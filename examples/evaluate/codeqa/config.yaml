@@ -1,0 +1,43 @@
+# CodeQA evaluation config for VAGEN framework
+# Two-turn: Turn 1 (OCR from images) -> Turn 2 (MCQ QA)
+# Uses v3_baseline condition (8pt font, Clean+NT 125 samples)
+
+envs:
+  - name: CodeQA
+    n_envs: 125
+    tag_id: codeqa_clean_nt_8pt
+    split: test
+    seed: [0, 124, 1]
+    max_turns: 2
+    config:
+      dataset_path: /gpfs/projects/p32992/AgentOCR/code_work/vlm_code_optimize/compare_llm_vs_vlm/data/longcodebench_qa/prepared_dataset_full/all_repos_dataset.jsonl
+      images_dir: /gpfs/projects/p32992/AgentOCR/code_work/vlm_code_optimize/compare_llm_vs_vlm/data/longcodebench_qa/code_images_8pt
+      contaminated_path: /gpfs/projects/p32992/AgentOCR/code_work/vlm_code_optimize/compare_llm_vs_vlm/data/longcodebench_qa/contaminated_questions_v3.json
+      nontruncated_path: /gpfs/projects/p32992/AgentOCR/code_work/vlm_code_optimize/compare_llm_vs_vlm/data/longcodebench_qa/nontruncated_repos.json
+      subset: clean_nt
+      max_vision_tokens: 230000
+      correct_reward: 1.0
+    chat_config:
+      temperature: 0
+      max_tokens: 4096
+
+experiment:
+  dump_dir: /gpfs/projects/p32992/VAGEN/rollouts/codeqa_clean_nt_8pt
+  default_max_turns: 2
+
+run:
+  backend: "vllm"
+  base_seed: 0
+  max_concurrent_jobs: 4
+  resume: skip_completed
+  live_summary: true
+
+backends:
+  vllm:
+    base_url: "http://127.0.0.1:8000/v1"
+    api_key: "EMPTY"
+    model: "Qwen/Qwen3-VL-8B-Instruct"
+    max_concurrency: 2
+    max_retries: 6
+    min_backoff: 1.0
+    max_backoff: 16.0

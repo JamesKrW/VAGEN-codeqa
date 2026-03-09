@@ -1,0 +1,142 @@
+# CodeQA trajectory generation config (TEMPLATE)
+# Generates 6 trajectories per sample with stratified ~20K token subsampling
+# All trajectories see the same images per sample
+# Temperature > 0 for output diversity
+#
+# Paths marked with ${...} are filled in by run.sh from .env
+
+envs:
+  - name: CodeQA
+    n_envs: 125
+    tag_id: traj_0
+    split: test
+    seed: [0, 124, 1]
+    max_turns: 2
+    config:
+      dataset_path: ${DATASET_PATH}
+      images_dir: ${IMAGES_DIR}
+      contaminated_path: ${CONTAMINATED_PATH}
+      nontruncated_path: ${NONTRUNCATED_PATH}
+      subset: clean_nt
+      token_budget: 20000
+      trajectory_id: 0
+      correct_reward: 1.0
+    chat_config:
+      temperature: 0.4
+      max_tokens: 4096
+
+  - name: CodeQA
+    n_envs: 125
+    tag_id: traj_1
+    split: test
+    seed: [0, 124, 1]
+    max_turns: 2
+    config:
+      dataset_path: ${DATASET_PATH}
+      images_dir: ${IMAGES_DIR}
+      contaminated_path: ${CONTAMINATED_PATH}
+      nontruncated_path: ${NONTRUNCATED_PATH}
+      subset: clean_nt
+      token_budget: 20000
+      trajectory_id: 1
+      correct_reward: 1.0
+    chat_config:
+      temperature: 0.4
+      max_tokens: 4096
+
+  - name: CodeQA
+    n_envs: 125
+    tag_id: traj_2
+    split: test
+    seed: [0, 124, 1]
+    max_turns: 2
+    config:
+      dataset_path: ${DATASET_PATH}
+      images_dir: ${IMAGES_DIR}
+      contaminated_path: ${CONTAMINATED_PATH}
+      nontruncated_path: ${NONTRUNCATED_PATH}
+      subset: clean_nt
+      token_budget: 20000
+      trajectory_id: 2
+      correct_reward: 1.0
+    chat_config:
+      temperature: 0.4
+      max_tokens: 4096
+
+  - name: CodeQA
+    n_envs: 125
+    tag_id: traj_3
+    split: test
+    seed: [0, 124, 1]
+    max_turns: 2
+    config:
+      dataset_path: ${DATASET_PATH}
+      images_dir: ${IMAGES_DIR}
+      contaminated_path: ${CONTAMINATED_PATH}
+      nontruncated_path: ${NONTRUNCATED_PATH}
+      subset: clean_nt
+      token_budget: 20000
+      trajectory_id: 3
+      correct_reward: 1.0
+    chat_config:
+      temperature: 0.4
+      max_tokens: 4096
+
+  - name: CodeQA
+    n_envs: 125
+    tag_id: traj_4
+    split: test
+    seed: [0, 124, 1]
+    max_turns: 2
+    config:
+      dataset_path: ${DATASET_PATH}
+      images_dir: ${IMAGES_DIR}
+      contaminated_path: ${CONTAMINATED_PATH}
+      nontruncated_path: ${NONTRUNCATED_PATH}
+      subset: clean_nt
+      token_budget: 20000
+      trajectory_id: 4
+      correct_reward: 1.0
+    chat_config:
+      temperature: 0.4
+      max_tokens: 4096
+
+  - name: CodeQA
+    n_envs: 125
+    tag_id: traj_5
+    split: test
+    seed: [0, 124, 1]
+    max_turns: 2
+    config:
+      dataset_path: ${DATASET_PATH}
+      images_dir: ${IMAGES_DIR}
+      contaminated_path: ${CONTAMINATED_PATH}
+      nontruncated_path: ${NONTRUNCATED_PATH}
+      subset: clean_nt
+      token_budget: 20000
+      trajectory_id: 5
+      correct_reward: 1.0
+    chat_config:
+      temperature: 0.4
+      max_tokens: 4096
+
+experiment:
+  dump_dir: ${ROLLOUT_DIR}
+  default_max_turns: 2
+
+run:
+  backend: "vllm"
+  base_seed: 0
+  max_concurrent_jobs: 4
+  resume: skip_completed
+  live_summary: true
+
+backends:
+  vllm:
+    base_url: "http://127.0.0.1:${VLLM_PORT}/v1"
+    api_key: "EMPTY"
+    model: "${MODEL}"
+    max_concurrency: 2
+    max_retries: 6
+    min_backoff: 1.0
+    max_backoff: 16.0

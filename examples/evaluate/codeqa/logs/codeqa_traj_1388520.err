@@ -1,0 +1,9 @@
+[1;36m(APIServer pid=2650494)[0;0m The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+[1;36m(APIServer pid=2650494)[0;0m `torch_dtype` is deprecated! Use `dtype` instead!
+[1;36m(Worker_TP0 pid=2651296)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+[1;36m(Worker_TP0 pid=2651296)[0;0m Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:08<00:26,  8.91s/it]
+[1;36m(Worker_TP0 pid=2651296)[0;0m Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:17<00:17,  8.64s/it]
+[1;36m(Worker_TP0 pid=2651296)[0;0m Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:21<00:06,  6.55s/it]
+[1;36m(Worker_TP0 pid=2651296)[0;0m Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:29<00:00,  7.31s/it]
+[1;36m(Worker_TP0 pid=2651296)[0;0m Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:29<00:00,  7.48s/it]
+[1;36m(Worker_TP0 pid=2651296)[0;0m 

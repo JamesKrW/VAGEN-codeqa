@@ -1,0 +1,48 @@
+name: vagen
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+  - defaults
+
+dependencies:
+  - python=3.12
+  - pip
+
+  # System libraries for image rendering (weasyprint)
+  - cairo
+  - pango
+  - gdk-pixbuf
+  - harfbuzz
+  - fribidi
+
+  - pip:
+    # ── PyTorch (CUDA 12.4) ──
+    - torch==2.8.0
+    - torchvision==0.23.0
+    - xformers==0.0.32.post1
+
+    # ── vLLM inference engine ──
+    - vllm==0.11.0
+
+    # ── VAGEN core deps ──
+    - gymnasium
+    - gymnasium[toy-text]
+    - gym-sokoban
+    - uvicorn<0.41
+    - omegaconf
+    - openai
+    - httpx
+    - pydantic
+    - pyyaml
+    - tqdm
+
+    # ── CodeQA-specific ──
+    - Pillow
+    - weasyprint
+    - pygments
+    - datasets
+    - huggingface-hub
+
+    # ── Transformers (for tokenizer) ──
+    - transformers

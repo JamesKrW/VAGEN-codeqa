@@ -8,7 +8,7 @@
 
 set -x
 
-PROJECT_NAME="vagen_experiments"
+PROJECT_NAME="codeqa_experiments"
 EXPERIMENT_NAME="codeqa_grpo_qwen3vl4b_topp_filter"
 
 BASEDIR=$(pwd)
